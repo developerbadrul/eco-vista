@@ -1,11 +1,14 @@
 'use client'
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 const LocationDetector = () => {
     const [error, setError] = useState(null)
     const router = useRouter();
     const searchParams = useSearchParams()
+
+    const requestedRef = useRef(false)
+    const timeoutRef = useRef(null)
 
     const getCurrentLocation = useCallback(() => {
         if (!navigator.geolocation) {
@@ -15,8 +18,14 @@ const LocationDetector = () => {
 
         setError(null);
 
+        // custom 15s timeout
+        timeoutRef.current = setTimeout(() => {
+            setError("Location request timed out. Please allow location access.")
+        }, 5000)
+
         navigator.geolocation.getCurrentPosition(
             (position) => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current)
                 const params = new URLSearchParams(searchParams.toString());
 
                 params.set("latitude", position.coords.latitude.toString());
@@ -26,6 +35,8 @@ const LocationDetector = () => {
             },
 
             (err) => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current)
+
                 switch (err.code) {
                     case err.PERMISSION_DENIED:
                         setError("Location permission denied. Please allow location access.");
@@ -43,7 +54,7 @@ const LocationDetector = () => {
 
             {
                 enableHighAccuracy: true,
-                timeout: 10000,
+                timeout: 5000,
                 maximumAge: 0,
             }
         );
@@ -51,8 +62,15 @@ const LocationDetector = () => {
 
 
     useEffect(() => {
+        if (requestedRef.current) return
+        requestedRef.current = true
+
         getCurrentLocation();
-    }, [getCurrentLocation]);
+
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current)
+        }
+    }, []);
 
     if (error) {
         return (
