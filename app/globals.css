@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
+  /* This sets the "Fixed" theme */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #171717; /* Off-black for better readability */
+  
+  /* Keep your font variables ready for the theme */
+  --font-geist-sans: "Geist Sans", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
 }
 
 @theme inline {
@@ -12,15 +17,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* REMOVED: @media (prefers-color-scheme: dark) 
+   Removing this prevents the system from forcing dark colors.
+*/
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* Smooths out the font rendering in Next.js */
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
 }
