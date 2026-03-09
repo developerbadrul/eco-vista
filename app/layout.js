@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// import { LocationProvider } from "@/providers/LocationProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +19,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="light" style={{ colorScheme: 'light' }}>
+    <html lang="en" >
       <body
         className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
       >
-        {children}
+        {/* <LocationProvider> */}
+          {children}
+        {/* </LocationProvider> */}
       </body>
     </html>
   );
