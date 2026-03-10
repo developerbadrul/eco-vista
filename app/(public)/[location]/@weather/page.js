@@ -9,9 +9,7 @@ const WeatherPage = async ({ params, searchParams }) => {
     const { lat, lon } = await getResolvedLatLong(location, latitude, longitude);
     if (lat && lon) {
         return <WeatherComponent lat={lat} lon={lon} />;
-    } else {
-        return <NoLocationInfo />;
-    }
+    } 
 
 };
 

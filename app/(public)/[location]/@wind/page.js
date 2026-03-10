@@ -9,9 +9,7 @@ const WindPage = async ({ params, searchParams }) => {
     const { lat, lon } = await getResolvedLatLong(location, latitude, longitude);
     if (lat && lon) {
         return <WindComponent lat={lat} lon={lon} />;
-    } else {
-        return <NoLocationInfo />;
-    }
+    } 
 
 };
 

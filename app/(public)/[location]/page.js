@@ -7,10 +7,10 @@ const CurrentLocationPage = async ({ params, searchParams }) => {
     const { latitude, longitude } = await searchParams;
 
     const { lat, lon } = await getResolvedLatLong(location, latitude, longitude);
+    console.log(lat, lon, "lat, lon");
+
     if (lat && lon) {
         return <LocationInfo lat={lat} lon={lon} />;
-    } else {
-        return <NoLocationInfo />;
     }
 
 
