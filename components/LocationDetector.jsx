@@ -18,7 +18,7 @@ const LocationDetector = () => {
 
         setError(null);
 
-        // custom 15s timeout
+        // custom 5s timeout
         timeoutRef.current = setTimeout(() => {
             setError("Location request timed out. Please allow location access.")
         }, 5000)

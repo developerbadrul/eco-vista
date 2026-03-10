@@ -1,8 +1,9 @@
+import AQIComponent from "@/components/AQIComponent";
 
 const AqiPage = () => {
     return (
         <div>
-            this is AqiPage
+            <AQIComponent />
         </div>
     );
 };
