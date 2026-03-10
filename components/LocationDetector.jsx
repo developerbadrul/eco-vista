@@ -70,7 +70,7 @@ const LocationDetector = () => {
         return () => {
             if (timeoutRef.current) clearTimeout(timeoutRef.current)
         }
-    }, []);
+    }, [getCurrentLocation]);
 
     if (error) {
         return (

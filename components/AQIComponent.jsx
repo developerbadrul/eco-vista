@@ -3,7 +3,6 @@ import Card from "./Card";
 import Image from "next/image";
 
 const AQIComponent = async ({ lat, lon }) => {
-    console.log(lat, "lat", lon, "lon");
     
     const { main, components } = await getAQIData(lat, lon);
 
