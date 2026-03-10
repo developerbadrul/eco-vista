@@ -1,4 +1,5 @@
 import { getLocationData } from "@/lib/location-info";
+import LocationSwitcher from "./LocationSwitcher";
 
 const LocationInfo = async ({ lat, lon }) => {
     const locationInfo = await getLocationData(lat, lon);
@@ -9,7 +10,7 @@ const LocationInfo = async ({ lat, lon }) => {
                     <h2 className="text-3xl font-bold text-white lg:text-4xl 2xl:text-[40px]">
                         {locationInfo?.continent}
                     </h2>
-                    {/* <LocationSwitcher /> */}
+                    <LocationSwitcher />
                 </div>
                 <p className="text-lg text-[#C4C4C4] lg:text-xl">
                     {locationInfo?.countryName} | {locationInfo?.city}
