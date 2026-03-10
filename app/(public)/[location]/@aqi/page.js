@@ -1,11 +1,10 @@
 import AQIComponent from "@/components/AQIComponent";
 
-const AqiPage = () => {
-    return (
-        <div>
-            <AQIComponent />
-        </div>
-    );
+const AQIPage = async ({ searchParams }) => {
+
+    const { latitude, longitude } = await searchParams;
+
+    return <AQIComponent lat={latitude} lon={longitude} />
 };
 
-export default AqiPage;
+export default AQIPage;
